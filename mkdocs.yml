@@ -1,6 +1,6 @@
 site_name: QR-Control System Docs
 theme:
-  name: material
+  name: readthedocs
   palette:
     scheme: slate # Темна тема, щоб очі не випали
     primary: indigo
@@ -11,8 +11,16 @@ nav:
       - Вимоги (SSD): architecture/SSD.md
       - Дизайн (SDD): architecture/SDD.md
       - Інфраструктура (ISD): architecture/ISD.md
-  - Для розробників:
-      - Онбординг: developer/onboarding.md
+      - Специфікація API: api.md
+  - Розробка:
+      - API & UI Огляд: api-overview.md
+      - CI/CD Процес: ci-cd-docs.md
   - Якість:
-      - Стратегія тестування: quality/test-strategy.md
+      - Definition of Done: definition-of-done.md
       - Матриця простежуваності: quality/traceability-matrix.md
+  - Різне :
+      - Онбординг: developer/onboarding.md
+
+plugins:
+  - search
+  - swagger-ui-tag # Додаємо цей плагін

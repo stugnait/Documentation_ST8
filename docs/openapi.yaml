@@ -1,0 +1,55 @@
+openapi: 3.0.3
+info:
+  title: QR Access Control API
+  description: API для керування івентами, генерації квитків та валідації через бот.
+  version: 1.0.0
+servers:
+  - url: https://api.richyou.agency/v1
+    description: Production server
+
+paths:
+  /tickets/validate:
+    post:
+      summary: Перевірка QR-коду
+      tags:
+        - Validation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                qr_hash:
+                  type: string
+                  example: "qr_777_success"
+                scanner_id:
+                  type: string
+                  example: "bot_worker_chernivtsi"
+      responses:
+        '200':
+          description: Квиток валідний, прохід дозволено.
+        '403':
+          description: Квиток вже використаний або недійсний.
+        '401':
+          description: Помилка авторизації (токен бота невірний).
+
+  /analytics/live:
+    get:
+      summary: Отримання статистики в реальному часі
+      tags:
+        - Analytics
+      responses:
+        '200':
+          description: Поточна кількість проходів.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_scanned:
+                    type: integer
+                  allowed:
+                    type: integer
+                  denied:
+                    type: integer
